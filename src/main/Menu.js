@@ -1,32 +1,25 @@
 import React from 'react'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
-import { withStyles } from '@material-ui/core/styles';
+import Navbar from 'react-bootstrap/lib/Navbar'
+import NavItem from 'react-bootstrap/lib/NavItem'
+import Nav from 'react-bootstrap/lib/Nav'
 
-const styles = {
-    grow: {
-        flexGrow: 1,
-    },
-    icon: {
-        marginRight: 10,
-    },
-}
-
-const Menu = props => (
-    <AppBar position='static' className={props.classes.grow}>
-        <Toolbar>
-            <Icon className={props.classes.icon}>sync</Icon>
-            <Typography variant='h6' color='inherit' className={props.classes.grow}>
-                Image2Music
-            </Typography>
-            <Button color="inherit" href='/#/'>Home</Button>
-            <Button color="inherit" href='/#/image-music'>Get Started</Button>
-            <Button color="inherit" href='/#/about'>About</Button>
-        </Toolbar>
-    </AppBar>
+export default props => (
+    <Navbar collapseOnSelect>
+        <Navbar.Header>
+            <Navbar.Brand>
+                <a href="#/">Image2Music</a>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+            <Nav pullRight>
+                <NavItem eventKey={1} href="#/image-music">
+                    Get Started
+                </NavItem>
+                <NavItem eventKey={2} href="#/about">
+                    About
+                </NavItem>
+            </Nav>
+        </Navbar.Collapse>
+    </Navbar>
 )
-
-export default withStyles(styles)(Menu)
