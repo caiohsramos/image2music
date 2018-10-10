@@ -3,17 +3,22 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     grow: {
         flexGrow: 1,
     },
+    icon: {
+        marginRight: 10,
+    },
 }
 
 const Menu = props => (
     <AppBar position='static' className={props.classes.grow}>
         <Toolbar>
+            <Icon className={props.classes.icon}>sync</Icon>
             <Typography variant='h6' color='inherit' className={props.classes.grow}>
                 Image2Music
             </Typography>
