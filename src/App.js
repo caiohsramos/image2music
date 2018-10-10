@@ -14,8 +14,14 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+          Link
           </a>
+          <spam>
+            <br/>
+            {process.env.REACT_APP_CLIENT_ID}
+            <br/>
+            {process.env.REACT_APP_CLIENT_SECRET}
+          </spam>
         </header>
       </div>
     );
