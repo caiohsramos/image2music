@@ -13,7 +13,7 @@ export default props => (
         </Navbar.Header>
         <Navbar.Collapse>
             <Nav pullRight>
-                <NavItem eventKey={1} href="#/image-music">
+                <NavItem eventKey={1} href="#/load-image">
                     Get Started
                 </NavItem>
                 <NavItem eventKey={2} href="#/about">
