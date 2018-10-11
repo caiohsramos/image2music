@@ -32,7 +32,8 @@ export default class LoadImage extends React.Component {
                                 type='text' 
                                 onChange={this.handleChange} 
                                 value={this.state.url}
-                                placeholder='Enter URL'/>
+                                placeholder='Enter URL'
+                                style={{marginBottom: 10}}/>
                         </Col>
                         <Col md={2}>
                             <Button 

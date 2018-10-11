@@ -5,6 +5,11 @@ import LoadImageForm from './LoadImageForm'
 import ImageLoader from 'react-load-image'
 import Alert from 'react-bootstrap/lib/Alert'
 import Row from 'react-bootstrap/lib/Row'
+import spinner from '../images/spinner.gif'
+
+const Preloader = props => (
+    <img src={spinner} alt=''/>
+)
 
 export default class ImageMusic extends React.Component {
     constructor(props) {
@@ -17,7 +22,7 @@ export default class ImageMusic extends React.Component {
     }
 
     handleSend = (url) => {
-        this.setState({...this.state, url: url, isLoaded: true})
+        this.setState({...this.state, url: url, isLoaded: true, failed: false})
     }
 
     handleLoad = () => {
@@ -49,15 +54,19 @@ export default class ImageMusic extends React.Component {
                     handleLoad={this.handleSend}
                 />
                 {this.state.url && 
-                    <ImageLoader 
-                        src={this.state.url}
-                        onError={this.handleFail}
-                        onLoad={this.handleLoad}>
-                        <img alt=''/>
-                    </ImageLoader>
+                    <div className='text-center'>
+                        <ImageLoader 
+                            src={this.state.url}
+                            onError={this.handleFail}
+                            onLoad={this.handleLoad}>
+                            <img alt='' className='img-fluid' height='400'/>
+                            <div>Error!</div>
+                            <Preloader />
+                        </ImageLoader>
+                    </div>
                 }
                 {this.state.isLoaded && 
-                    //continue..
+                    //Show button to handleRedirect
                     null
                 }
             </Grid>
