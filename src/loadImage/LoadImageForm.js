@@ -19,6 +19,11 @@ export default class LoadImage extends React.Component {
         this.setState({...this.state, url: e.target.value})
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.handleLoad(this.state.url)
+    }
+
     render () {
         return (
             <Row>
@@ -33,13 +38,13 @@ export default class LoadImage extends React.Component {
                                 onChange={this.handleChange} 
                                 value={this.state.url}
                                 placeholder='Enter URL'
-                                style={{marginBottom: 10}}/>
+                                style={{marginBottom:10}}/>
                         </Col>
                         <Col md={2}>
                             <Button 
                                 type='submit'
                                 bsStyle='success'
-                                onClick={() => this.props.handleLoad(this.state.url)}
+                                onClick={this.handleSubmit}
                                 disabled={!this.state.url}>
                                 Verify!
                             </Button>
