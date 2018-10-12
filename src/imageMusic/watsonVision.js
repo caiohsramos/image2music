@@ -25,7 +25,7 @@ const getProperties = (url, callback) => {
     })
     .then((resp) => {
         axios.get(endpointApi,{
-            headers: { 'Authorization': 'bearer ' + resp.data.access_token },
+            headers: { 'Authorization': 'Bearer ' + resp.data.access_token },
             params: paramsApi
         }).then(callback).catch((error) => { console.log(error) })
     }).catch((error) => { console.log(error) })
