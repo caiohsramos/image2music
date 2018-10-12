@@ -3,7 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom'
 import About from '../about/About'
 import Home from '../home/Home';
 import LoadImage from '../loadImage/LoadImage';
-import ImageMusic from '../imageMusic/imageMusic';
+import ImageMusic from '../imageMusic/ImageMusic';
 
 export default props => (
     <Switch>

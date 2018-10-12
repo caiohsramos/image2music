@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'query-string'
 
-const getProperties = (url) => {
+const getProperties = (url, callback) => {
     const endpointApi = 'https://gateway.watsonplatform.net/visual-recognition/api/v3/classify'
     const endpointToken = 'https://cors-anywhere.herokuapp.com/https://iam.bluemix.net/identity/token'
     
@@ -27,9 +27,7 @@ const getProperties = (url) => {
         axios.get(endpointApi,{
             headers: { 'Authorization': 'bearer ' + resp.data.access_token },
             params: paramsApi
-        }).then((resp) => {
-            console.log(resp.data)
-        }).catch((error) => { console.log(error) })
+        }).then(callback).catch((error) => { console.log(error) })
     }).catch((error) => { console.log(error) })
 }
 
