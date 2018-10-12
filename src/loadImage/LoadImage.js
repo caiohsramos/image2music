@@ -5,6 +5,8 @@ import LoadImageForm from './LoadImageForm'
 import ImageLoader from 'react-load-image'
 import Alert from 'react-bootstrap/lib/Alert'
 import Row from 'react-bootstrap/lib/Row'
+import Button from 'react-bootstrap/lib/Button'
+import { Redirect } from 'react-router-dom'
 import spinner from '../images/spinner.gif'
 
 const Preloader = props => (
@@ -18,11 +20,12 @@ export default class ImageMusic extends React.Component {
             url: '',
             isLoaded: false,
             failed: false,
+            redirect: false,
         }
     }
 
     handleSend = (url) => {
-        this.setState({...this.state, url: url, isLoaded: true, failed: false})
+        this.setState({...this.state, url: url, failed: false})
     }
 
     handleLoad = () => {
@@ -30,16 +33,23 @@ export default class ImageMusic extends React.Component {
     }
 
     handleFail = () => {
-        this.setState({...this.state, url:'', failed: true})
+        this.setState({...this.state, url:'', failed: true, isLoaded:false})
     }
 
-    handleRedirect = () => {
-        //Redirect to AI page
+    handleRedirect = (e) => {
+        e.preventDefault()
+        this.setState({...this.state, redirect: true})
     }
 
     render() {
         return (
             <Grid>
+                {this.state.redirect && 
+                    <Redirect 
+                        to={{
+                            pathname: '/image-music',
+                            search: `?url=${this.state.url}`
+                        }}/>}
                 <Row>
                     <PageHeader>
                         Image2Music <small>Paste here an URL of an image</small>
@@ -67,7 +77,14 @@ export default class ImageMusic extends React.Component {
                 }
                 {this.state.isLoaded && 
                     //Show button to handleRedirect
-                    null
+                    <div className='text-center'>
+                        <Button 
+                            style={{marginTop:15}}
+                            onClick={this.handleRedirect}
+                            bsSize="large">
+                            Process!
+                        </Button>
+                    </div>
                 }
             </Grid>
         )
