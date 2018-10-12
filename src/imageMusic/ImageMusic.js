@@ -10,15 +10,27 @@ export default class ImageMusic extends React.Component {
         super(props)
         this.state = {
             isLoading: true,
+            classes: []
         }
         this.url = qs.parse(props.location.search).url
         getProperties(this.url,this.handleResults)
     }
 
     handleResults = (resp) => {
-        console.log(resp.data)
-        this.setState({...this.state, isLoading: false})
+        const classes = resp.data.images[0].classifiers[0].classes 
+        console.log(classes)
+        this.setState({
+            ...this.state, 
+            isLoading: false, 
+            classes: classes
+        })
     }
+
+    renderClasses = () => (
+        this.state.classes.map((obj, index) =>(
+            <h4 key={index}>{obj.class}{' '}{obj.score}</h4>
+        ))
+    )
 
     render() {
         return (
@@ -27,7 +39,7 @@ export default class ImageMusic extends React.Component {
                 <PageHeader>
                     Results <small>{this.url}</small>
                 </PageHeader>
-                {this.state.isLoading && <h2>Loading...</h2>}
+                {this.state.isLoading ? <h2>Loading...</h2> : this.renderClasses()}
             </Grid>
         )
     }
