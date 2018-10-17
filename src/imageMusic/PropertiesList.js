@@ -19,7 +19,7 @@ export default class PropertiesList extends React.Component {
     render() {
         return (
             <ListGroup>
-                <ListGroupItem active onClick={this.toggleOpen}>Properties</ListGroupItem>
+                <ListGroupItem active onClick={this.toggleOpen}>Image Properties</ListGroupItem>
                 <Collapse in={this.state.isOpen}>
                     <div>
                         {this.props.classes.map((obj, index) => (
