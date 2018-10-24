@@ -3,7 +3,7 @@ import qs from 'query-string'
 
 const getProperties = (url, callback) => {
     const endpointApi = 'https://gateway.watsonplatform.net/visual-recognition/api/v3/classify'
-    const endpointToken = 'https://thingproxy.freeboard.io/fetch/https://iam.bluemix.net/identity/token'
+    const endpointToken = 'https://cors-anywhere.herokuapp.com/https://iam.bluemix.net/identity/token'
 
     const headersToken = {
         "Content-Type": "application/x-www-form-urlencoded",

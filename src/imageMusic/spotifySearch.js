@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'query-string'
 
 const getSongs = (properties, callback) => {
-    const endpointToken = 'https://thingproxy.freeboard.io/fetch/https://accounts.spotify.com/api/token'
+    const endpointToken = 'https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api/token'
     const endpointApi = 'https://api.spotify.com/v1/search'
     const headersToken = {
         'Content-Type': 'application/x-www-form-urlencoded',
