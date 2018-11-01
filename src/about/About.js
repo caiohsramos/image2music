@@ -1,5 +1,5 @@
 import React from 'react'
-import Grid from 'react-bootstrap/lib/Grid'
+import Grid from '../common/Grid'
 
 export default props => (
     <Grid>
