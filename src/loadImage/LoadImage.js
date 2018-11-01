@@ -1,16 +1,13 @@
 import React from 'react'
-import Grid from 'react-bootstrap/lib/Grid'
-import PageHeader from 'react-bootstrap/lib/PageHeader'
+import Grid from '../common/Grid'
+import PageHeader from '../common/PageHeader'
 import LoadImageForm from './LoadImageForm'
 import ImageLoader from 'react-load-image'
-import Alert from 'react-bootstrap/lib/Alert'
-import Row from 'react-bootstrap/lib/Row'
-import Button from 'react-bootstrap/lib/Button'
 import { Redirect } from 'react-router-dom'
 import spinner from '../images/spinner.gif'
 
 const Preloader = props => (
-    <img src={spinner} alt=''/>
+    <img src={spinner} alt='' />
 )
 
 export default class ImageMusic extends React.Component {
@@ -25,65 +22,64 @@ export default class ImageMusic extends React.Component {
     }
 
     handleSend = (url) => {
-        this.setState({...this.state, url: url, failed: false})
+        this.setState({ ...this.state, url: url, failed: false })
     }
 
     handleLoad = () => {
-        this.setState({...this.state, isLoaded: true, failed: false})
+        this.setState({ ...this.state, isLoaded: true, failed: false })
     }
 
     handleFail = () => {
-        this.setState({...this.state, url:'', failed: true, isLoaded:false})
+        this.setState({ ...this.state, url: '', failed: true, isLoaded: false })
     }
 
     handleRedirect = (e) => {
         e.preventDefault()
-        this.setState({...this.state, redirect: true})
+        this.setState({ ...this.state, redirect: true })
     }
 
     render() {
         return (
             <Grid>
-                {this.state.redirect && 
-                    <Redirect 
+                {this.state.redirect &&
+                    <Redirect
                         to={{
                             pathname: '/image-music',
                             search: `?url=${this.state.url}`
-                        }}/>}
-                <Row>
+                        }} />}
+                <Grid row>
                     <PageHeader>
                         Image2Music <small>Paste here an URL of an image</small>
                     </PageHeader>
-                </Row>
+                </Grid>
                 {this.state.failed &&
-                    <Alert bsStyle="warning">
+                    <div className='alert alert-warning' role='alert'>
                         <strong>Holy guacamole!</strong> Could not load URL.
-                    </Alert>
+                    </div>
                 }
                 <LoadImageForm
                     handleLoad={this.handleSend}
                 />
-                {this.state.url && 
+                {this.state.url &&
                     <div className='text-center'>
-                        <ImageLoader 
+                        <ImageLoader
                             src={this.state.url}
                             onError={this.handleFail}
                             onLoad={this.handleLoad}>
-                            <img alt='' className='img-fluid' height='400'/>
+                            <img alt='' className='rounded mx-auto d-block' height='400' />
                             <div>Error!</div>
                             <Preloader />
                         </ImageLoader>
                     </div>
                 }
-                {this.state.isLoaded && 
+                {this.state.isLoaded &&
                     //Show button to handleRedirect
                     <div className='text-center'>
-                        <Button 
-                            style={{marginTop:15}}
+                        <button
                             onClick={this.handleRedirect}
-                            bsSize="large">
+                            className='btn btn-primary btn-large mt-2'>
                             Process!
-                        </Button>
+                        </button>
                     </div>
                 }
             </Grid>

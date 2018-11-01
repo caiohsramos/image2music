@@ -1,25 +1,22 @@
 import React from 'react'
-import Navbar from 'react-bootstrap/lib/Navbar'
-import NavItem from 'react-bootstrap/lib/NavItem'
-import Nav from 'react-bootstrap/lib/Nav'
 
 export default props => (
-    <Navbar collapseOnSelect>
-        <Navbar.Header>
-            <Navbar.Brand>
-                <a href="#/">Image2Music</a>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-            <Nav pullRight>
-                <NavItem eventKey={1} href="#/load-image">
-                    Get Started
-                </NavItem>
-                <NavItem eventKey={2} href="#/about">
-                    About
-                </NavItem>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
+    <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+        <a className='navbar-brand' href="#/">Image2Music</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className='collapse navbar-collapse' id="navbarSupportedContent">
+            <ul className='navbar-nav mr-auto'>
+                <li className='nav-item active'>
+                    <a className="nav-link" href="#/load-image">
+                        Get Started<span className="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li className='nav-item active'>
+                    <a className="nav-link" href="#/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 )

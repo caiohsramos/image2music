@@ -1,11 +1,4 @@
 import React from 'react'
-import Form from 'react-bootstrap/lib/Form'
-import FormGroup from 'react-bootstrap/lib/FormGroup'
-import FormControl from 'react-bootstrap/lib/FormControl'
-import ControlLabel from 'react-bootstrap/lib/ControlLabel'
-import Button from 'react-bootstrap/lib/Button'
-import Row from 'react-bootstrap/lib/Row'
-import Col from 'react-bootstrap/lib/Col'
 
 export default class LoadImage extends React.Component {
     constructor(props) {
@@ -16,7 +9,7 @@ export default class LoadImage extends React.Component {
     }
 
     handleChange = (e) => {
-        this.setState({...this.state, url: e.target.value})
+        this.setState({ ...this.state, url: e.target.value })
     }
 
     handleSubmit = (e) => {
@@ -24,34 +17,28 @@ export default class LoadImage extends React.Component {
         this.props.handleLoad(this.state.url)
     }
 
-    render () {
+    render() {
         return (
-            <Row>
-                <Form horizontal>
-                    <FormGroup>
-                        <Col md={2}>
-                            <ControlLabel>Image URL</ControlLabel>{' '}
-                        </Col>
-                        <Col md={8}>
-                            <FormControl 
-                                type='text' 
-                                onChange={this.handleChange} 
-                                value={this.state.url}
-                                placeholder='Enter URL'
-                                style={{marginBottom:10}}/>
-                        </Col>
-                        <Col md={2}>
-                            <Button 
-                                type='submit'
-                                bsStyle='success'
-                                onClick={this.handleSubmit}
-                                disabled={!this.state.url}>
-                                Verify!
-                            </Button>
-                        </Col>
-                    </FormGroup>
-                </Form>
-            </Row>
+            <div className='row justify-content-around align-items-center'>
+                <div className='form-group col-md-8'>
+                    <label>Image URL</label>
+                    <input
+                        type='text'
+                        className='form-control'
+                        onChange={this.handleChange}
+                        value={this.state.url}
+                        placeholder='Enter URL' />
+                </div>
+                <div className='form-group col-md-2'>
+                    <button
+                        type='submit'
+                        className='btn btn-success'
+                        onClick={this.handleSubmit}
+                        disabled={!this.state.url}>
+                        Verify!
+                    </button>
+                </div>
+            </div>
         )
     }
 }

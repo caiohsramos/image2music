@@ -1,28 +1,19 @@
 import axios from 'axios'
-import qs from 'query-string'
 
 const getSongs = (properties, callback) => {
-    const endpointToken = 'https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/api/token'
-    const endpointApi = 'https://api.spotify.com/v1/search'
-    const headersToken = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    }
-    const bodyToken = {
-        grant_type: 'client_credentials',
-    }
+    const endpoint = 'https://image2music-api.herokuapp.com/api/spotify'
     const auth = {
-        username: process.env.REACT_APP_CLIENT_ID,
-        password: process.env.REACT_APP_CLIENT_SECRET,
+        username: process.env.REACT_APP_USERNAME,
+        password: process.env.REACT_APP_PASSWORD,
     }
-    axios.post(endpointToken, qs.stringify(bodyToken), {
+
+    const body = {
+        query: properties[0].class,
+    }
+
+    axios.post(endpoint, body, {
         auth: auth,
-        headers: headersToken,
-    }).then((resp) => {
-        axios.get(endpointApi, {
-            headers: { 'Authorization': 'Bearer ' + resp.data.access_token },
-            params: { q: properties[0].class, type: 'track' },
-        }).then(callback).catch((error) => { console.log(error) })
-    }).catch((error) => { console.log(error) })
+    }).then(callback).catch((error) => { console.log(error) })
 }
 
 export { getSongs }

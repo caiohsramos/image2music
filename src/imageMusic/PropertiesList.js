@@ -1,7 +1,5 @@
 import React from 'react'
-import ListGroup from 'react-bootstrap/lib/ListGroup'
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem'
-import Collapse from 'react-bootstrap/lib/Collapse'
+import Collapse from '../common/Collapse'
 
 export default class PropertiesList extends React.Component {
     constructor(props) {
@@ -18,18 +16,18 @@ export default class PropertiesList extends React.Component {
 
     render() {
         return (
-            <ListGroup>
-                <ListGroupItem active onClick={this.toggleOpen}>Image Properties</ListGroupItem>
-                <Collapse in={this.state.isOpen}>
-                    <div>
-                        {this.props.classes.map((obj, index) => (
-                            <ListGroupItem key={index}>
-                                {obj.class}{' '}{obj.score}
-                            </ListGroupItem>
-                        ))}
-                    </div>
+            <ul className='list-group'>
+                <li className='list-group-item active' onClick={this.toggleOpen}>
+                    Image Properties
+                </li>
+                <Collapse in={!this.state.isOpen}>
+                    {this.props.classes.map((obj, index) => (
+                        <li className='list-group-item' key={index}>
+                            {obj.class}{' '}{obj.score}
+                        </li>
+                    ))}
                 </Collapse>
-            </ListGroup>
+            </ul>
         )
     }
 }
